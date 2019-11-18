@@ -11,11 +11,11 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/baselayer_1.png",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "https://www.jensonusa.com/globalassets/product-images---all-assets/pearl-izumi/iw173a03-black.jpg?w=250&h=300&quality=85",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "rgb(48,48,48)"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

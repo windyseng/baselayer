@@ -1,7 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import { MonoText } from '../components/StyledText';
-import FetchLocation from '../components/FetchLocation';
+// import FetchLocation from '../components/FetchLocation';
 import {
   Alert,
   Button,
@@ -10,15 +10,28 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 
 export default class Baselayer extends React.Component {
-  render() {
-    let baselayerPic = {
-      uri: 'https://www.jensonusa.com/globalassets/product-images---all-assets/pearl-izumi/iw173a03-black.jpg?w=250&h=300&quality=85'
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: '',
+      password: '',
     };
+  }
+
+  onLogin() {
+    const { username, password } = this.state;
+
+    Alert.alert('Credentials', `${username} + ${password}`);
+  }
+
+  render() {
     return (
       <View style={styles.container}>
          <ScrollView
@@ -27,38 +40,57 @@ export default class Baselayer extends React.Component {
           <Text style={styles.baselayerText}>BASELAYER</Text>
           <Text style={styles.sloganText}>Getting out of bed is hard enough.</Text>
           <Text style={styles.sloganText}>We're here to help.</Text>
-          </ScrollView>
       <View style={styles.welcomeContainer}>
-      <Image source={baselayerPic} style={styles.welcomeImage}/>
+      <Image source={require('../assets/images/baselayer_1.png')} style={styles.welcomeImage}/>
       </View>
 
       <View style={styles.LoginButton}>
+      <TextInput
+          value={this.state.username}
+          onChangeText={(username) => this.setState({ username })}
+          placeholder={'Username'}
+          style={styles.input}
+        />
+        <TextInput
+          value={this.state.password}
+          onChangeText={(password) => this.setState({ password })}
+          placeholder={'Password'}
+          secureTextEntry={true}
+          style={styles.input}
+        />
       <Button
           title="LOG IN" color='white'
-          onPress={() => Alert.alert('Logging In')}
-        />
+          // onPress={() => Alert.alert('Logging In')}
+          onPress={this.onLogin.bind(this)}
+          />
+
       </View>
 
       <View>
         <Text style={styles.signUpText}>Not registered?  Sign up below.</Text>
       </View>
-
       <View style={styles.signUpButton}>
       <Button
           title="SIGN UP" color='white'
           onPress={() => Alert.alert('Signing up')}
         />
     </View>
+      </ScrollView>
       </View>
+
     );
   }
 }
 
-
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#rgb(48,48,48)',
+  },
+  card:{
+    backgroundColor:'rgba(56, 172, 236, 1)',
+    borderWidth:0,
+    borderRadius:20
   },
   baselayerText: {
     fontStyle: 'italic',
@@ -67,7 +99,7 @@ export const styles = StyleSheet.create({
     letterSpacing: 0.15,
     textAlign: 'center',
     fontFamily:'Helvetica Neue',
-    color: '#000000'
+    color: '#fff'
   },
   sloganText: {
     fontStyle: 'italic',
@@ -95,7 +127,21 @@ export const styles = StyleSheet.create({
     backgroundColor: '#A9A9A9',
     borderWidth: 1,
     borderRadius: 1,
-    borderColor: 'rgb(255,255,255)',
+    borderColor: '#rgb(48,48,48)',
+    marginTop: 1,
+    marginBottom: 0,
+  },
+  input:{
+    padding: 1,
+    color: '#A9A9A9',
+    fontWeight: 'bold',
+    fontSize: 12,
+    fontFamily:'Helvetica Neue',
+    letterSpacing: 0.25,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderRadius: 1,
+    borderColor: '#rgb(48,48,48)',
     marginTop: 1,
     marginBottom: 0,
   },
@@ -118,7 +164,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#A9A9A9',
     borderWidth: 3,
     borderRadius: 2,
-    borderColor: 'rgb(255,255,255)',
+    borderColor: '#rgb(48,48,48)',
     marginTop: 1,
     marginBottom: 1
   },
